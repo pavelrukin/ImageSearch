@@ -16,9 +16,6 @@ interface ImageSearchApi {
         @Query("api_key")
         apiKey: String = API_KEY,
 
-
     ): Response<ImageSearchResponse>
-
-
 
 }

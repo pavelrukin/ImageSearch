@@ -29,7 +29,6 @@ class DataAdapter : RecyclerView.Adapter<DataAdapter.DataViewHolder>() {
 
     fun submitList(list: List<ImageModel>) {
         differ.submitList(list)
-
     }
 
     val differ = AsyncListDiffer(this, diffUtilCallBack)
@@ -61,7 +60,6 @@ class DataAdapter : RecyclerView.Adapter<DataAdapter.DataViewHolder>() {
                 onLongItemClickListener?.let { it(data) }
                 true
             }
-
             setOnClickListener {
                 onItemClickListener?.let { it(data) }
             }
@@ -72,10 +70,5 @@ class DataAdapter : RecyclerView.Adapter<DataAdapter.DataViewHolder>() {
     fun setOnItemClickListener(listener: (ImageModel) -> Unit) {
         onItemClickListener = listener
     }
-
-    fun setOnLongClickLstener(listener: (ImageModel) -> Unit) {
-        onLongItemClickListener = listener
-    }
-
 
 }

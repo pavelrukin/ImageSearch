@@ -1,13 +1,8 @@
-package com.pavelrukin.imagesearch.ui
+package com.pavelrukin.imagesearch.repository
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import com.pavelrukin.imagesearch.db.RepoDao
 import com.pavelrukin.imagesearch.model.ImageModel
-import com.pavelrukin.imagesearch.utils.LiveRealmData
-import com.pavelrukin.imagesearch.utils.repoDao
 import io.realm.Realm
-import io.realm.RealmResults
 import io.realm.exceptions.RealmException
 
 class RealmRepository  {
@@ -16,7 +11,6 @@ class RealmRepository  {
 val realm:Realm = Realm.getDefaultInstance()
 
     fun deleteData(imageModel: ImageModel){
-
         realm.beginTransaction()
         try {
             realm.where(ImageModel::class.java).equalTo("url", imageModel.url).findFirst().let {
@@ -39,7 +33,6 @@ val realm:Realm = Realm.getDefaultInstance()
             Log.d(TAG, "saveData: ${e.message}")
         }
         realm.commitTransaction()
-
     }
     fun getAllData( ) = realm.where(ImageModel::class.java).findAll().let { it }
 

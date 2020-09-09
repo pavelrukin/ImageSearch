@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class ImageSearchResponse(
     @SerializedName("data")
-    val data: List<Data>,
+    val data: MutableList<Data>,
     @SerializedName("meta")
     val meta: Meta,
     @SerializedName("pagination")

@@ -22,7 +22,6 @@ class ImageSearchApp: Application() {
                     )
                 )
             }
-
             Realm.init(this)
             Realm.setDefaultConfiguration(RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().build())
         }

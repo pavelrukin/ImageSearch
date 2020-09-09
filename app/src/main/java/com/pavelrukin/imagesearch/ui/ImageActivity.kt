@@ -15,7 +15,6 @@ import com.pavelrukin.imagesearch.utils.Resource
 import com.pavelrukin.imagesearch.utils.hideKeyboard
 import io.realm.Realm
 import io.realm.RealmChangeListener
-import io.realm.exceptions.RealmException
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -34,20 +33,13 @@ class ImageActivity : AppCompatActivity() {
 
         initView()
 
-
         editTextZone()
         fetchList()
-
 
     }
 
 
-/*
-    override fun onDestroy() {
-        super.onDestroy()
-        realm.close()
-    }*/
-    fun initView(){
+    fun initView() {
         setupRecyclerView()
         clickDelete()
         realmListener = RealmChangeListener {
@@ -56,6 +48,7 @@ class ImageActivity : AppCompatActivity() {
         }
         realm.addChangeListener(realmListener)
     }
+
     private fun setupRecyclerView() {
         dataAdapter = DataAdapter()
         recyclerView.apply {
@@ -65,9 +58,7 @@ class ImageActivity : AppCompatActivity() {
             realm.where(ImageModel::class.java).findAll().let {
                 dataAdapter.submitList(it)
             }
-            }
-
-
+        }
     }
 
     fun clickDelete() {
@@ -84,9 +75,6 @@ class ImageActivity : AppCompatActivity() {
                     viewModel.getSearchImage(textInEditText)
                     hideKeyboard()
                     Log.d(TAG, "editTextZone: action true ")
-
-                    Toast.makeText(context, textInEditText, android.widget.Toast.LENGTH_SHORT)
-                        .show()
                 }
                 true
             }
@@ -100,21 +88,22 @@ class ImageActivity : AppCompatActivity() {
                 is Resource.Success -> {
                     hideProgressBar()
                     response.data?.let { response ->
-                        val imageUrl =
-                            response.data[(0..response.data.size).random()].images.downsizedMedium.url
-                        Log.d(TAG, "image url ${response.data.size}")
 
-                        Glide.with(this)
-                            .asGif()
-                            .load(imageUrl)
-                            .into(iv_image)
+                            val imageUrl =
+                                response.data[(0..response.data.size).random()].images.downsizedMedium.url
+                            Log.d(TAG, "image url ${response.data.size}")
 
-                        if (realm.where(ImageModel::class.java).equalTo("url", imageUrl).findFirst()
-                                .toString() != imageUrl
-                        ) {
-                            viewModel.saveData(imageUrl,et_search.text.toString())
+                            Glide.with(this)
+                                .asGif()
+                                .load(imageUrl)
+                                .into(iv_image)
 
-                        }
+                            if (realm.where(ImageModel::class.java).equalTo("url", imageUrl)
+                                    .findFirst()
+                                    .toString() != imageUrl
+                            ) {
+                                viewModel.saveData(imageUrl, et_search.text.toString())
+                            }
 
                     }
                 }

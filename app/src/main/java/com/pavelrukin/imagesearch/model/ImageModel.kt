@@ -5,7 +5,6 @@ import io.realm.annotations.PrimaryKey
 
 
 open class ImageModel(
-
     var searchText: String? = null,
     var url: String? = null
 ) : RealmObject()

@@ -1,4 +1,4 @@
-package com.pavelrukin.imagesearch.ui
+package com.pavelrukin.imagesearch.repository
 
 import com.pavelrukin.imagesearch.api.RetrofitInstance
 
