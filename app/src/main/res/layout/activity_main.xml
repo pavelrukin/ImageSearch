@@ -6,7 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.ImageActivity">
 
-
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_image" />
     <EditText
         android:id="@+id/et_search"
         android:layout_width="0dp"
@@ -17,10 +24,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_weight="1"
-
-
         android:drawableLeft="@drawable/ic_baseline_search_24"
-
         android:hint="Enter Pin"
         android:imeOptions="actionSearch"
         android:paddingRight="60dp"

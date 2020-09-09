@@ -77,4 +77,5 @@ class DataAdapter : RecyclerView.Adapter<DataAdapter.DataViewHolder>() {
         onLongItemClickListener = listener
     }
 
+
 }
